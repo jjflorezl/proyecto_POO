@@ -3,11 +3,55 @@ import compra.Compra;
 import producto.DesarrolladorProducto;
 import producto.Producto;
 import usuario.Cliente;
+import usuario.consejoSombrio.AdministradorContenido;
+import usuario.consejoSombrio.AdministradorUsuario;
+import usuario.duena.Duena;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
+        //Listas
+        List<Producto> inventario = new ArrayList<>();
+        List<Carrito> carritos = new ArrayList<>();
+        List<AdministradorUsuario> administradoresUsuario = new ArrayList<>();
+        List<AdministradorContenido> administradoresContenidos = new ArrayList<>();
+        List<DesarrolladorProducto> desarrolladoresProductos = new ArrayList<>();
+
+        Duena cabrita = new Duena(1L, "Sakura", "Dueña" , "LaCabraLoca@eia.edu.co", "27/02/2025" , "Activo" , "LaCabritaMamalona" , "28/09/2025");
+
+        //Login
+        Scanner sc = new Scanner(System.in);
+        System.out.println("----------Login----------- \n Ingrese el nombre de usuario");
+        String nombre = sc.nextLine();
+        System.out.println("Ingrese la contraseña");
+        String password = sc.nextLine();
+
+        if(password.equals("AguapanelaConQueso123")){
+            for(DesarrolladorProducto p : desarrolladoresProductos){
+                if(p.getNombre().equals(nombre)){
+                    menuDesarrollador();
+                }
+            }
+        }if(password.equals("PandequesoRicolino")){
+            for(AdministradorUsuario p : administradoresUsuario){
+                if(p.getNombre().equals(nombre)){
+                    menuAdministradorUsuario();
+                }
+            }
+        }if(password.equals("SalpiconApanado")){
+            for(AdministradorContenido p : administradoresContenidos){
+                if(p.getNombre().equals(nombre)){
+                    menuAdministradorContenido();
+                }
+            }
+        }if(password.equals(cabrita.getClaveMaestra())){
+            menuDuena();
+        }else{
+            menuCliente();
+        }
 
         Cliente pablo = new Cliente(1234L,"juan","causa","eamil.com","19/08/2000","jijijjaja","calle 9",1233432323);
         System.out.println("Pablo: " + pablo.getNombre());
